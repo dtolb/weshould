@@ -1,4 +1,4 @@
-# Group MMS Bot
+# We Should
 
 Group MMS bot powered by [Bandwidth](http://dev.bandwidth.com).
 
