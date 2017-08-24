@@ -13,7 +13,7 @@ Add `415-723-1444` to a new group message thread (or directly) and text:
 
 Anything else is ignored and your chat continues as normal
 
-![Demo](gif_demo.gif)
+![Demo](README_IMAGES/gif_demo.gif)
 
 ## Deploy
 
@@ -35,4 +35,4 @@ Anything else is ignored and your chat continues as normal
 `npm install`
 `npm start`
 
-![Powered by](giphy.png)
+![Powered by](README_IMAGES/giphy.png)

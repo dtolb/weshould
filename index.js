@@ -10,7 +10,8 @@ let app = express();
 function startServer() {
 	debug('Starting Server');
 	app.use(bodyParser.json());
-	app.use('/callback/', require('./routes.js'));
+	app.use(express.static('public'))
+	app.use('/callback/', require('./bin/routes.js'));
 	/// catch 404 and forward to error handler
 	app.use(function (req, res, next) {
 		//debug(req)

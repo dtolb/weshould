@@ -28,6 +28,7 @@
     "dark-sky": "^1.0.10",
     "debug": "^2.6.1",
     "express": "^4.15.2",
+    "findorcreate-promise": "^1.2.0",
     "giphy-api": "^1.2.5",
     "mongoose": "^4.9.1",
     "node-bandwidth": "dtolb/node-bandwidth#v2_messaging",
