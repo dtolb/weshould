@@ -17,6 +17,35 @@ Anything else is ignored and your chat continues as normal
 
 ## Deploy
 
+### Run front end
+
+#### Clone this repo
+```bash
+git clone https://github.com/dtolb/weshould.git
+cd weshould
+```
+
+#### Install dependecies
+
+```bash
+npm run install-all
+```
+
+#### Run server
+
+```bash
+npm start
+```
+
+The Server will automatically reload all your changes after you save any `.js`, `.html`, or `.css` file.
+
+To Resart type `rs` and enter
+
+#### Front end
+
+All front end files are located in `public/`
+
+
 ### Pre Reqs
 * [Bandwidth Credentials](http://dev.bandwidth.com)
 * [Dark Sky Key](https://darksky.net/dev/)

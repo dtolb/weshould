@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "'echo no test'",
-    "start": "node index.js",
+    "start": "nodemon --watch public --watch bin -e js,html,css index.js",
     "heroku-postbuild": "cd public && npm install",
     "install-all": "npm install && cd public && npm install"
   },
@@ -34,6 +34,7 @@
     "giphy-api": "^1.2.5",
     "mongoose": "^4.9.1",
     "node-bandwidth": "dtolb/node-bandwidth#v2_messaging",
+    "nodemon": "^1.12.1",
     "underscore": "^1.8.3"
   }
 }
