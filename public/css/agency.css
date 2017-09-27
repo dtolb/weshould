@@ -46,7 +46,7 @@ section {
     font-weight: 400;
     font-style: italic;
     line-height: 1.75;
-    margin-bottom: 75px;
+    margin-bottom: 20px;
     text-transform: none;
     font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
@@ -450,8 +450,24 @@ section#about {
   section#about .img-iphone {
     width: 100%;
     max-width: 370px;}
+  section#about .img-half {
+    text-align: right;
+    position: absolute;
+    right: 0;
+    top: -70px;}
   section#about h6 {
     color: #00fbb9;}
+  section#about h2 {
+    max-width: 500px;}
+  section#about .logos {
+    padding: 20px 0 40px;}
+    section#about .logos img {
+      padding-bottom: 20px;
+      max-width: 200px;
+      width: 100%;}
+  section#about a {
+    color: #004658;
+    text-decoration: underline;}
 
 section#try {
   padding-top: 0;
@@ -496,6 +512,16 @@ section#try {
     section#try .section-number.number-2 {
       top: -200px;
       left: 48%;}
+  section#try .img-half {
+    line-height: 130px;
+    min-height: 150px;}
+  section#try .btn-primary {
+    margin-top: 30px;}
+
+section#team {
+  }
+  section#team h3.section-subheading {
+    margin-bottom: 75px;}
 
 section#contact {
   background-color: #222222;
@@ -582,8 +608,8 @@ ul.social-buttons {
 .btn-primary {
   font-weight: 700;
   color: white;
-  border-color: #00fbb9;
-  background-color: #00fbb9;
+  border-color: #00fbb9 !important;
+  background-color: #00fbb9 !important;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-transform: uppercase; }
   .btn-primary.focus, .btn-primary:focus {
