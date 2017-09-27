@@ -5,15 +5,21 @@
  */
 body {
   overflow-x: hidden;
-  font-family: 'Gotham', 'Gotham', Gotham, Gotham, sans-serif; }
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
 p {
   line-height: 1.75; }
 
 a {
-  color: #00fbb9; }
+  color: #00fbb9;
+  transition: all 0.2s ease; }
   a.active, a:active, a:focus, a:hover {
-    color: #fec503; }
+    color: #00475a; }
+
+span.img-half {
+  display: inline-block;}
+  span.img-half img {
+    width: 50%;}
 
 h1,
 h2,
@@ -21,9 +27,13 @@ h3,
 h4,
 h5,
 h6 {
+  color: #00475a;
   font-weight: 700;
-  font-family: 'Gotham', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-transform: uppercase; }
+h6 {
+  font-weight: 700;
+  letter-spacing: 0.2em;}
 
 section {
   padding: 100px 0; }
@@ -35,9 +45,10 @@ section {
     font-size: 16px;
     font-weight: 400;
     font-style: italic;
+    line-height: 1.75;
     margin-bottom: 75px;
     text-transform: none;
-    font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
 @media (min-width: 768px) {
   section {
@@ -76,7 +87,7 @@ body {
     color: #00fbb9;
     font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive; }
     #mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-      color: #fec503; }
+      color: #00fbb9; }
   #mainNav .navbar-nav .nav-item .nav-link {
     font-size: 90%;
     font-weight: 400;
@@ -433,6 +444,58 @@ header.masthead {
     text-transform: none; }
   .team-member p {
     margin-top: 0; }
+
+section#about {
+  padding-bottom: 0;}
+  section#about .img-iphone {
+    width: 100%;
+    max-width: 370px;}
+  section#about h6 {
+    color: #00fbb9;}
+
+section#try {
+  padding-top: 0;
+  overflow: hidden;}
+  section#try .partial-circle {
+    position: relative;
+    padding-top: 100px;
+    height: 230px;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;}
+    section#try .partial-circle:before {
+      content: '';
+      position: absolute;
+      height: 500px;
+      width: 120%;
+      border-radius: 50%;
+      left: -10%;
+      bottom: 0;
+      background: #004658;}
+    section#try .partial-circle h6 {
+      color: #fff;}
+  section#try .section-heading {
+    margin-top: 100px;
+    position: relative;}
+  section#try .section-number {
+    color: #fefefe;
+    font-size: 170px;
+    font-weight: 900;
+    line-height: 380px;
+    text-align: center;
+    background: rgba(0,69,104,.04);
+    border-radius: 2em;
+    width: 380px;
+    height: 380px;
+    display: block;
+    position: absolute;
+    z-index: -1;}
+    section#try .section-number.number-1 {
+      top: -240px;
+      left: calc(50% - 480px);}
+    section#try .section-number.number-2 {
+      top: -200px;
+      left: 48%;}
 
 section#contact {
   background-color: #222222;
