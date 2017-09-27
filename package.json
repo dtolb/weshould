@@ -6,7 +6,8 @@
   "scripts": {
     "test": "'echo no test'",
     "start": "node index.js",
-    "heroku-postbuild": "cd public && npm install"
+    "heroku-postbuild": "cd public && npm install",
+    "install-all": "npm install && cd public && npm install"
   },
   "keywords": [
     "bandwidth",
