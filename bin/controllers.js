@@ -68,7 +68,7 @@ module.exports.handleMessages = function (req, res, next) {
 		message.command = extractCommand(message);
 		const command = message.command.command
 		if (isCommandValid(command)) {
-			commands[command](message)
+			commands[command].handler(message)
 			.then(function (outMessage) {
 				debug(outMessage);
 				req.outMessages.push(outMessage);
@@ -95,6 +95,9 @@ module.exports.handleMessages = function (req, res, next) {
 };
 
 module.exports.sendMessages = function (req, res, next) {
+	if(req.isOutboundMessage) {
+		return;
+	}
 	if(req.outMessages[0].to.length >= 1) {
 		bandwidth.Message.sendGroup(req.outMessages[0])
 		.then(function (body) {
