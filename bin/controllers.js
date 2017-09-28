@@ -95,6 +95,9 @@ module.exports.handleMessages = function (req, res, next) {
 };
 
 module.exports.sendMessages = function (req, res, next) {
+	if(req.isOutboundMessage) {
+		return;
+	}
 	if(req.outMessages[0].to.length >= 1) {
 		bandwidth.Message.sendGroup(req.outMessages[0])
 		.then(function (body) {

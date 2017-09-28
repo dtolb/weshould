@@ -65,3 +65,5 @@ package-lock.json
 #person
 test.js
 res.js
+
+*.vcf

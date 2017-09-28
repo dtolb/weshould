@@ -14,4 +14,7 @@ const api = new Bandwidth({
   apiSecret : apiSecret
 });
 
+api.applicationId = process.env.BANDWIDTH_APPLICATION_ID;
+api.userId = userId;
+
 module.exports = api;

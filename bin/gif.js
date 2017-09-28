@@ -12,7 +12,7 @@ module.exports.handleGifCommand = function (message) {
 			return {
 				media: [gifUrl],
 				to: message.numbers.to,
-				from: message.numbers.from
+				from: mesage.numbers.from
 			}
 		})
 		.catch(function (error) {

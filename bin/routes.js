@@ -1,6 +1,7 @@
 const express = require('express');
 let router = module.exports = express.Router();
 const controllers = require('./controllers.js');
+const signup = require('./signup.js');
 const optOut = require('./optOut.js');
 
 router.route('/message')
@@ -19,3 +20,15 @@ router.route('/calls')
 		controllers.checkCallEventType,
 		controllers.transferCallToSales
 		);
+
+router.route('/signup')
+	.post(
+		controllers.sendAccepted,
+		signup.isIncomingMessage,
+		signup.checkForExistingNumber,
+		signup.checkValidZip,
+		signup.getNewNumber,
+		signup.addNumberToDatabase,
+		signup.createVcard,
+		controllers.sendMessages
+	)
