@@ -3,7 +3,12 @@ const yelp = require('yelp-fusion');
 const debug = require('debug')('giphy_sms');
 
 const yelpToken = process.env.YELP_TOKEN;
-const language = Language();
+const language = Language({
+	credentials: {
+		client_email: PROCESS.env.GOOGLE_CLIENT_EMAIL,
+		private_key: process.env.GOOGLE_PRIVATE_KEY
+	}
+});
 
 const y = yelp.client(yelpToken);
 
