@@ -135,7 +135,7 @@ module.exports.getNewNumber = async (req, res, next) => {
 		catch (e) {
 			debug('Error searching, trying again')
 			numbers = await bandwidth.AvailableNumber.searchAndOrder("local", {
-				state: "SC"
+				state: "SC",
 				quantity: 1
 			});
 		}
