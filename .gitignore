@@ -61,3 +61,7 @@ play.js
 
 .DS_Store
 package-lock.json
+
+#person
+test.js
+res.js

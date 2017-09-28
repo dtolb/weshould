@@ -68,7 +68,7 @@ module.exports.handleMessages = function (req, res, next) {
 		message.command = extractCommand(message);
 		const command = message.command.command
 		if (isCommandValid(command)) {
-			commands[command](message)
+			commands[command].handler(message)
 			.then(function (outMessage) {
 				debug(outMessage);
 				req.outMessages.push(outMessage);

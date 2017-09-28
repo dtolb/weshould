@@ -1,5 +1,8 @@
 let giphy = require('giphy-api')();
 const debug = require('debug')('giphy_sms');
+const util       = require('util')
+const shuffle = require('knuth-shuffle').knuthShuffle;
+
 const maxGifSize = 1500000;
 
 module.exports.handleGifCommand = function (message) {
@@ -26,7 +29,9 @@ const searchGifResponse = function (gifs) {
 	if (!gifs.data) {
 		throw new Error('No data in gif response');
 	}
+	//debug(util.inspect(gifs.data, false, null))
 	let gifUrl = '';
+	shuffle(gifs.data);
 	gifSearch:
 	for (let i = 0; i < gifs.data.length; i++) {
 		let gif = gifs.data[i]

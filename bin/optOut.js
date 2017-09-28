@@ -5,7 +5,7 @@ const Promise = require('bluebird');
 const _ = require('underscore');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DATABASE_URL || process.env.MONGODB_URI || 'mongodb://localhost/giphy-sms');
+mongoose.connect((process.env.DATABASE_URL || process.env.MONGODB_URI || 'mongodb://localhost/giphy-sms'), {useMongoClient: true});
 
 const NumberSchema = new mongoose.Schema({
 	number: { type: String, required: true},
