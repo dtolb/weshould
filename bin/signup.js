@@ -125,10 +125,20 @@ module.exports.getNewNumber = async (req, res, next) => {
 	}
 	try {
 		debug(`Searching for new number in ${req.zipcode}`);
-		const numbers = await bandwidth.AvailableNumber.searchAndOrder("local", {
-			zip: req.zipcode,
-			quantity: 1
-		});
+		let numbers = [];
+		try {
+			numbers = await bandwidth.AvailableNumber.searchAndOrder("local", {
+				zip: req.zipcode,
+				quantity: 1
+			});
+		}
+		catch (e) {
+			debug('Error searching, trying again')
+			numbers = await bandwidth.AvailableNumber.searchAndOrder("local", {
+				state: "SC"
+				quantity: 1
+			});
+		}
 		debug(`Found Numbers:`);
 		p(numbers);
 		const numberId = numbers[0].id;
