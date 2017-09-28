@@ -7,7 +7,7 @@
     "test": "'echo no test'",
     "debug": "DEBUG=giphy_sms,express* nodemon --watch public --watch bin -e js,html,css index.js",
     "start": "node index.js",
-    "heroku-postbuild": "echo -n $GOOGLE_FILE > Weshould-c74cee91239d.json && cd public && npm install",
+    "heroku-postbuild": "cd public && npm install",
     "install-all": "npm install && cd public && npm install"
   },
   "engines":{
