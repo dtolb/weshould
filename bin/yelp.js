@@ -5,7 +5,7 @@ const debug = require('debug')('giphy_sms');
 const yelpToken = process.env.YELP_TOKEN;
 const language = Language({
 	credentials: {
-		client_email: PROCESS.env.GOOGLE_CLIENT_EMAIL,
+		client_email: process.env.GOOGLE_CLIENT_EMAIL,
 		private_key: process.env.GOOGLE_PRIVATE_KEY
 	}
 });
