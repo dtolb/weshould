@@ -25,7 +25,7 @@ const yelpFailure = message => {
 
 const failure = message => {
 	return {
-		text: `Sorry something went wrong looking for ${query}. \n Please try again`,
+		text: `Sorry something went wrong looking for ${message.command.query}. \n Please try again`,
 		to: message.numbers.to,
 		from: message.numbers.from
 	}
