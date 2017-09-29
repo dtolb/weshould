@@ -36,6 +36,10 @@ const searchForNumber = function (number) {
 }
 
 module.exports.removeOptOutsFromMessage = function (req, res, next) {
+	if (req.outMessages.length < 1){
+		next();
+		return;
+	}
 	const outNumbers = req.outMessages[0].to;
 	debug('Searching for optouts: ' + outNumbers);
 	return Promise.map(outNumbers, function (number) {

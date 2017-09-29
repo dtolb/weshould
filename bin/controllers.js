@@ -54,6 +54,7 @@ module.exports.checkIfBodyIsArray = function (req, res, next) {
 	}
 	else {
 		var e = new Error('Message body not array');
+		debug(req.body);
 		debug(e);
 		next(e);
 	}
@@ -62,6 +63,7 @@ module.exports.checkIfBodyIsArray = function (req, res, next) {
 module.exports.handleMessages = function (req, res, next) {
 	req.outMessages = [];
 	let message = req.body[0];
+	message.baseUrl = `http://${req.hostname}`;
 	debug('Handling message');
 	if (messageReadyForProcessing(message)) {
 		message.numbers = buildToArray(message);
@@ -71,7 +73,13 @@ module.exports.handleMessages = function (req, res, next) {
 			commands[command].handler(message)
 			.then(function (outMessage) {
 				debug(outMessage);
-				req.outMessages.push(outMessage);
+				if (outMessage === 'CALL') {
+					return;
+				}
+				else {
+					debug(outMessage);
+					req.outMessages.push(outMessage);
+				}
 			})
 			.catch(function (error) {
 				debug('Error generating message');
@@ -95,7 +103,7 @@ module.exports.handleMessages = function (req, res, next) {
 };
 
 module.exports.sendMessages = function (req, res, next) {
-	if(req.isOutboundMessage) {
+	if(req.isOutboundMessage || req.outMessages.length < 1) {
 		return;
 	}
 	if(req.outMessages[0].to.length >= 1) {

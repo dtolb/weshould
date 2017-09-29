@@ -3,22 +3,23 @@ const gif = require('./gif.js');
 const weather = require('./weather.js');
 const catfact = require('./catfact.js');
 const yelp = require('./yelp.js');
+const calls = require('./calls.js');
 const Promise = require('bluebird');
 
 const noCommand = function (message) {
-	return Promise.resolve({
-		text: 'Sorry, I don\'t know: ' + message.command.command,
+	return {
+		text: `Sorry, I don't know: ${message.command.command}.\n Send @help for info on what Weshould can do.`,
 		to: message.numbers.to,
 		from: message.numbers.from
-	});
+	};
 };
 
 const commandError = function (message) {
-	return Promise.resolve({
-		text: 'Sorry, something went wrong',
+	return {
+		text: 'Sorry, something went wrong. Send @help for info on what Weshould can do.',
 		to: message.numbers.to,
 		from: message.numbers.from
-	});
+	};
 }
 
 const handleHelpCommand = message => {
@@ -71,6 +72,14 @@ const commands = {
 	yelp : {
 		handler: yelp.handleYelpCommmand,
 		description: `"@yelp <thing> in <location>: @yelp deli in Raleigh"`
+	},
+	call : {
+		handler: calls.handleCallCommand,
+		description: `"@call <number>": Create a call only to you: @call +19191234444`
+	},
+	voice : {
+		handler: calls.handleVoiceMessageCommand,
+		description: `"@voice": Creates a call to you and attachs file to thread`
 	}
 }
 
