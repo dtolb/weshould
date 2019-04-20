@@ -5,24 +5,25 @@ const shuffle = require('knuth-shuffle').knuthShuffle;
 
 const maxGifSize = 1500000;
 
-module.exports.handleGifCommand = function (message) {
-  return giphy.search(message.command.query)
-    .then(searchGifResponse)
-    .then(function (gifUrl) {
-      return {
-        media: [gifUrl],
-        to: message.numbers.to,
-        from: message.numbers.from
-      }
-    })
-    .catch(function (error) {
-      debug(error);
-      return {
-        text: 'Can\'t find gif for: ' + message.command.query,
-        to: message.numbers.to,
-        from: message.numbers.from
-      };
-    });
+module.exports.handleGifCommand = async (message) => {
+  try {
+    const gifResponse = await giphy.search(message.command.query);
+    const gifUrl = searchGifResponse(gifResponse);
+    const message = {
+      media: [gifUrl],
+      to: message.numbers.to,
+      from: message.numbers.from
+    };
+    return message;
+  }
+  catch (error) {
+    debug(error);
+    return {
+      text: 'Can\'t find gif for: ' + message.command.query,
+      to: message.numbers.to,
+      from: message.numbers.from
+    };
+  };
 };
 
 const searchGifResponse = function (gifs) {

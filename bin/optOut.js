@@ -21,26 +21,23 @@ const phrases = [
   'unsubscribe'
 ];
 
-const addNumberToOptOut = function (number) {
+const addNumberToOptOut = (number) => {
   debug('Adding number to optout list: ' + number);
   return Number.findOrCreate({
     number: number
   });
 }
 
-const searchForNumber = function (number) {
-  return Number.find({ number: number})
-  .then(function (res) {
-
-  })
+const searchForNumber = (number) => {
+  return Number.find({ number: number});
 }
 
-module.exports.removeOptOutsFromMessage = function (req, res, next) {
-  const outNumbers = req.outMessages[0].to;
-  debug('Searching for optouts: ' + outNumbers);
-  return Promise.map(outNumbers, function (number) {
-    return Number.find({ number: number })
-    .then(function (doc) {
+module.exports.removeOptOutsFromMessage = async (req, res, next) => {
+  try {
+    const outNumbers = req.outMessages[0].to;
+    debug('Searching for optouts: ' + outNumbers);
+    const results = await Promise.map(outNumbers, number => {
+      const doc = await Number.find({ number: number });
       if (doc.length > 0) {
         debug('Found number in optout: ' + doc[0].number);
         return doc[0].number;
@@ -48,20 +45,18 @@ module.exports.removeOptOutsFromMessage = function (req, res, next) {
       else {
         debug('Number not in opt out list: ' + number);
       }
-    })
-  })
-  .then(function (results) {
+    });
     debug('Numbers that opted out: ' + results);
     req.outMessages[0].to = _.difference(outNumbers,results);
     next();
-  })
-  .catch(function (err) {
-    debug('Error removing components from to array');
-    next(err);
-  })
-};
+  }
+  catch (err) {
+      debug('Error removing components from to array');
+      next(err);
+  }
+}
 
-module.exports.checkForOptOut = function (req, res, next) {
+module.exports.checkForOptOut = async (req, res, next) => {
   let message = req.body[0];
   let number = message.message.from;
   let text = ''
@@ -76,8 +71,8 @@ module.exports.checkForOptOut = function (req, res, next) {
   debug('Incoming text: ' + text);
   if (phrases.indexOf(text) >= 0) {
     debug('Stop Command Found');
-    addNumberToOptOut(number)
-    .then(function (doc) {
+    try {
+      const doc = await addNumberToOptOut(number);
       if (doc.created) {
         debug('Added number to block list: ' + number);
       }
@@ -85,11 +80,11 @@ module.exports.checkForOptOut = function (req, res, next) {
         debug('Number already in block list: ' + number);
       }
       next();
-    })
-    .catch(function (err) {
-      debug('Error finding or creating number to block list: ' + number);
-    })
+    }
   }
+  catch(err) {
+    debug('Error finding or creating number to block list: ' + number);
+    }
   else {
     debug('Not a stop command');
     next();
