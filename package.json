@@ -10,8 +10,8 @@
     "heroku-postbuild": "cd public && npm install",
     "install-all": "npm install && cd public && npm install"
   },
-  "engines":{
-    "node":"8.3.0"
+  "engines": {
+    "node": "8.3.0"
   },
   "keywords": [
     "bandwidth",
@@ -29,7 +29,9 @@
   "dependencies": {
     "@google-cloud/language": "^0.12.1",
     "@google/maps": "^0.3.1",
+    "@lifeomic/attempt": "^3.0.0",
     "aws-sdk": "^2.124.0",
+    "axios": "^0.18.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "cat-facts": "^1.0.2",

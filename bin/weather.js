@@ -14,55 +14,55 @@ String.prototype.lowerCaseFirstLetter = function() {
 }
 
 const noAddress = function (message) {
-	return {
-		text: 'Can\'t find weather information for: ' + message.command.query,
-		to: message.numbers.to,
-		from: message.numbers.from
-	};
+  return {
+    text: 'Can\'t find weather information for: ' + message.command.query,
+    to: message.numbers.to,
+    from: message.numbers.from
+  };
 }
 
 module.exports.handleWeatherCommand = function (message) {
-	return geoCode({
-		address: message.command.query
-	})
-	.then(function (data) {
-		let bounds;
-		try {
-			bounds = data.json.results[0].geometry.location
-		}
-		catch (e) {
-			debug(e);
-			throw new Error('Can\'t find results');
-		}
-		debug(bounds);
-		return bounds;
-	})
-	.then(function (bounds) {
-		return forecast
-			.latitude(bounds.lat)
-			.longitude(bounds.lng)
-			.get()
-			.then(function (res) {
-				let txt = 'Weather for ' + message.command.query + ' is ';
-				try {
-					let hourly = res.hourly.summary.lowerCaseFirstLetter();
-					let daily = res.daily.summary.lowerCaseFirstLetter();
-					txt = txt + hourly + ' And expect ' + daily;
-					return {
-						text: txt,
-						to: message.numbers.to,
-						from: message.numbers.from
-					}
-				}
-				catch (e) {
-					debug(e);
-					throw new Error('Can\'t find results');
+  return geoCode({
+    address: message.command.query
+  })
+  .then(function (data) {
+    let bounds;
+    try {
+      bounds = data.json.results[0].geometry.location
+    }
+    catch (e) {
+      debug(e);
+      throw new Error('Can\'t find results');
+    }
+    debug(bounds);
+    return bounds;
+  })
+  .then(function (bounds) {
+    return forecast
+      .latitude(bounds.lat)
+      .longitude(bounds.lng)
+      .get()
+      .then(function (res) {
+        let txt = 'Weather for ' + message.command.query + ' is ';
+        try {
+          let hourly = res.hourly.summary.lowerCaseFirstLetter();
+          let daily = res.daily.summary.lowerCaseFirstLetter();
+          txt = txt + hourly + ' And expect ' + daily;
+          return {
+            text: txt,
+            to: message.numbers.to,
+            from: message.numbers.from
+          }
+        }
+        catch (e) {
+          debug(e);
+          throw new Error('Can\'t find results');
 
-				}
-			});
-	})
-	.catch(function (err) {
-		debug(err);
-		return noAddress(message);
-	});
+        }
+      });
+  })
+  .catch(function (err) {
+    debug(err);
+    return noAddress(message);
+  });
 }
