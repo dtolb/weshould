@@ -41,7 +41,7 @@
     "findorcreate-promise": "^1.2.0",
     "giphy-api": "^1.2.5",
     "knuth-shuffle": "^1.0.1",
-    "mongoose": "^4.11.13",
+    "mongoose": "^5.7.7",
     "node-bandwidth": "dtolb/node-bandwidth#v2_messaging",
     "nodemon": "^1.12.1",
     "underscore": "^1.8.3",
